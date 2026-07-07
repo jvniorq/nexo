@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'core/nexo_theme.dart';
+import 'data/organization_repository.dart';
 import 'domain/models.dart';
 
 void main() {
@@ -51,30 +52,12 @@ class NexoShell extends StatefulWidget {
 class _NexoShellState extends State<NexoShell> {
   int _selectedIndex = 0;
 
-  final List<TaskItem> _tasks = [
-    TaskItem('Finish the presentation', NexoSpace.personal),
-    TaskItem('Buy medication', NexoSpace.household),
-    TaskItem('Confirm the appointment', NexoSpace.personal),
-  ];
+  final OrganizationRepository _repository =
+      InMemoryOrganizationRepository();
 
-  final List<ShoppingEntry> _shopping = [
-    ShoppingEntry('Milk', '2 liters'),
-    ShoppingEntry('Rice', '1 kg'),
-    ShoppingEntry('Detergent', '1 unit'),
-  ];
-
-  final List<NoteEntry> _notes = [
-    NoteEntry(
-      'Ideas for the week',
-      'Plan meals, review expenses, and organize the weekend.',
-      NexoSpace.personal,
-    ),
-    NoteEntry(
-      'Home information',
-      'Useful household details and important contacts.',
-      NexoSpace.household,
-    ),
-  ];
+  List<TaskItem> get _tasks => _repository.tasks;
+  List<ShoppingEntry> get _shopping => _repository.shopping;
+  List<NoteEntry> get _notes => _repository.notes;
 
   static const _destinations = [
     ('Today', Icons.home_outlined, Icons.home_rounded),
@@ -163,11 +146,11 @@ class _NexoShellState extends State<NexoShell> {
   void _select(int index) => setState(() => _selectedIndex = index);
 
   void _toggleTask(int index, bool value) {
-    setState(() => _tasks[index].completed = value);
+    setState(() => _repository.setTaskCompleted(index, value));
   }
 
   void _toggleShopping(int index, bool value) {
-    setState(() => _shopping[index].completed = value);
+    setState(() => _repository.setShoppingCompleted(index, value));
   }
 
   Future<void> _showQuickCreate() async {
@@ -243,11 +226,11 @@ class _NexoShellState extends State<NexoShell> {
                       if (text.isEmpty) return;
                       setState(() {
                         if (type == 'Task') {
-                          _tasks.add(TaskItem(text, space));
+                          _repository.addTask(TaskItem(text, space));
                         } else if (type == 'Purchase') {
-                          _shopping.add(ShoppingEntry(text, '1 unit'));
+                          _repository.addShoppingEntry(ShoppingEntry(text, '1 unit'));
                         } else {
-                          _notes.insert(0, NoteEntry(text, '', space));
+                          _repository.addNote(NoteEntry(text, '', space));
                         }
                       });
                       Navigator.pop(sheetContext);
