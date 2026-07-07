@@ -10,10 +10,14 @@ void main() {
     expect(find.text('PRIORITIES'), findsOneWidget);
     expect(find.text('Finish the presentation'), findsOneWidget);
 
+    final taskTitle = find.text('Finish the presentation');
+    await tester.scrollUntilVisible(taskTitle, 300);
+    await tester.pumpAndSettle();
+
     await tester.tap(find.byType(Checkbox).first);
     await tester.pumpAndSettle();
 
-    final task = tester.widget<Text>(find.text('Finish the presentation'));
+    final task = tester.widget<Text>(taskTitle);
     expect(task.style?.decoration, TextDecoration.lineThrough);
   });
 
