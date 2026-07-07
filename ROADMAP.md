@@ -19,7 +19,7 @@ A checked item means an initial implementation exists; it does not mean the feat
 - [x] Add adaptive navigation for mobile, tablet, and desktop
 - [x] Implement light, dark, and system-default themes
 - [ ] Define reusable design tokens and components
-- [ ] Establish local models and repository interfaces
+- [x] Establish local models and repository interfaces
 - [x] Add automated formatting, analysis, and tests
 
 ## Phase 2 — Personal organization MVP
