@@ -1,0 +1,51 @@
+name: Feature request
+description: Suggest an improvement or product capability
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Nexo is in an early planning stage. Describe the need before proposing a specific implementation.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or need
+      description: Who needs this and what are they trying to accomplish?
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: Describe what a successful experience would feel like.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Product area
+      options:
+        - Today
+        - Tasks and calendar
+        - Household
+        - Shopping and inventory
+        - Notes
+        - Reminders and alarms
+        - Accessibility
+        - Privacy and security
+        - Sync and offline behavior
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: considerations
+    attributes:
+      label: Privacy, accessibility, and platform considerations
+      description: Note any implications for personal data, household roles, motion, mobile, or desktop.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe current workarounds or other possible approaches.
