@@ -1,0 +1,29 @@
+# Flutter and Dart
+.dart_tool/
+.packages
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.lock
+
+# Platform tooling
+android/.gradle/
+ios/Pods/
+macos/Pods/
+windows/flutter/ephemeral/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.env
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
