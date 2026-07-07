@@ -1,6 +1,8 @@
 # Roadmap
 
-Nexo is currently in the planning and pre-alpha stage. The roadmap is intentionally outcome-focused and may change as the product is validated.
+Nexo is currently in pre-alpha with an initial Flutter interface, a FastAPI foundation, automated tests, and GitHub CI. The roadmap is intentionally outcome-focused and may change as the product is validated.
+
+A checked item means an initial implementation exists; it does not mean the feature is production-ready.
 
 ## Phase 0 — Product definition
 
@@ -13,27 +15,27 @@ Nexo is currently in the planning and pre-alpha stage. The roadmap is intentiona
 
 ## Phase 1 — Foundation
 
-- [ ] Create the Flutter project structure
-- [ ] Add adaptive navigation for mobile, tablet, and desktop
-- [ ] Implement light, dark, and system-default themes
+- [ ] Create complete Flutter platform projects
+- [x] Add adaptive navigation for mobile, tablet, and desktop
+- [x] Implement light, dark, and system-default themes
 - [ ] Define reusable design tokens and components
 - [ ] Establish local models and repository interfaces
-- [ ] Add automated formatting, analysis, and tests
+- [x] Add automated formatting, analysis, and tests
 
 ## Phase 2 — Personal organization MVP
 
-- [ ] Today dashboard
+- [x] Today dashboard
 - [ ] Tasks, subtasks, priorities, and deadlines
 - [ ] Daily, weekly, monthly, and yearly calendar views
 - [ ] Notes and checklists
 - [ ] Local reminders
-- [ ] Quick capture
+- [x] Quick capture
 - [ ] SQLite persistence
 - [ ] Offline operation
 
 ## Phase 3 — Household organization
 
-- [ ] Personal and household spaces
+- [x] Personal and household spaces
 - [ ] Household members, roles, and permissions
 - [ ] Shared shopping lists
 - [ ] Household inventory
@@ -43,7 +45,7 @@ Nexo is currently in the planning and pre-alpha stage. The roadmap is intentiona
 
 ## Phase 4 — Backend and synchronization
 
-- [ ] FastAPI service foundation
+- [x] FastAPI service foundation
 - [ ] PostgreSQL schema and migrations
 - [ ] Authentication and secure sessions
 - [ ] Server-side authorization
