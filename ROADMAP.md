@@ -1,10 +1,14 @@
 # Roadmap
 
+
 Nexo is currently in pre-alpha with an initial Flutter interface, a FastAPI foundation, automated tests, and GitHub CI. The roadmap is intentionally outcome-focused and may change as the product is validated.
+
 
 A checked item means an initial implementation exists; it does not mean the feature is production-ready.
 
+
 ## Phase 0 — Product definition
+
 
 - [x] Define the personal and household organization concept
 - [x] Establish privacy and collaboration principles
@@ -13,16 +17,20 @@ A checked item means an initial implementation exists; it does not mean the feat
 - [ ] Validate the concept with potential users
 - [ ] Confirm the product name and visual identity
 
+
 ## Phase 1 — Foundation
 
-- [ ] Create complete Flutter platform projects
+
+- [x] Create complete Flutter platform projects
 - [x] Add adaptive navigation for mobile, tablet, and desktop
 - [x] Implement light, dark, and system-default themes
 - [x] Define reusable design tokens and components
 - [x] Establish local models and repository interfaces
 - [x] Add automated formatting, analysis, and tests
 
+
 ## Phase 2 — Personal organization MVP
+
 
 - [x] Today dashboard
 - [ ] Tasks, subtasks, priorities, and deadlines
@@ -33,7 +41,9 @@ A checked item means an initial implementation exists; it does not mean the feat
 - [ ] SQLite persistence
 - [ ] Offline operation
 
+
 ## Phase 3 — Household organization
+
 
 - [x] Personal and household spaces
 - [ ] Household members, roles, and permissions
@@ -43,7 +53,9 @@ A checked item means an initial implementation exists; it does not mean the feat
 - [ ] Recurring and rotating responsibilities
 - [ ] Relevant household activity feed
 
+
 ## Phase 4 — Backend and synchronization
+
 
 - [x] FastAPI service foundation
 - [ ] PostgreSQL schema and migrations
@@ -54,7 +66,9 @@ A checked item means an initial implementation exists; it does not mean the feat
 - [ ] Remote notifications
 - [ ] File and image storage
 
+
 ## Phase 5 — Quality and release preparation
+
 
 - [ ] Accessibility audit
 - [ ] Security review
@@ -65,9 +79,12 @@ A checked item means an initial implementation exists; it does not mean the feat
 - [ ] Closed beta
 - [ ] Public release
 
+
 ## Later possibilities
 
+
 These are ideas, not commitments:
+
 
 - Barcode scanning
 - Receipt OCR
@@ -76,4 +93,3 @@ These are ideas, not commitments:
 - Widgets and lock-screen actions
 - Voice capture
 - Optional natural-language assistance
-- Budget estimates for shopping lists
