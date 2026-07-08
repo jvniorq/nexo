@@ -18,7 +18,7 @@ A checked item means an initial implementation exists; it does not mean the feat
 - [ ] Create complete Flutter platform projects
 - [x] Add adaptive navigation for mobile, tablet, and desktop
 - [x] Implement light, dark, and system-default themes
-- [ ] Define reusable design tokens and components
+- [x] Define reusable design tokens and components
 - [x] Establish local models and repository interfaces
 - [x] Add automated formatting, analysis, and tests
 
