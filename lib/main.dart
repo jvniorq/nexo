@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'core/design_tokens.dart';
 import 'core/nexo_theme.dart';
 import 'data/organization_repository.dart';
 import 'domain/models.dart';
+import 'widgets/nexo_section_label.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -108,9 +110,9 @@ class _NexoShellState extends State<NexoShell> {
                 ),
               Expanded(
                 child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 240),
-                  switchInCurve: Curves.easeOutCubic,
-                  switchOutCurve: Curves.easeInCubic,
+                  duration: NexoMotion.standard,
+                  switchInCurve: NexoMotion.enterCurve,
+                  switchOutCurve: NexoMotion.exitCurve,
                   child: KeyedSubtree(
                     key: ValueKey(_selectedIndex),
                     child: pages[_selectedIndex],
@@ -380,13 +382,7 @@ class NextEventCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'NEXT EVENT',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+            const NexoSectionLabel('NEXT EVENT', accent: true),
             const SizedBox(height: 18),
             Text('10:30', style: Theme.of(context).textTheme.headlineMedium),
             Text(
@@ -420,7 +416,7 @@ class PriorityCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('PRIORITIES', style: Theme.of(context).textTheme.titleMedium),
+            const NexoSectionLabel('PRIORITIES'),
             const SizedBox(height: 8),
             for (var index = 0; index < tasks.length; index++)
               CheckboxListTile(
