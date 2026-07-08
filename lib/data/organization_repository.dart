@@ -6,6 +6,7 @@ abstract interface class OrganizationRepository {
   List<NoteEntry> get notes;
 
   void setTaskCompleted(int index, bool completed);
+  void setSubtaskCompleted(int taskIndex, int subtaskIndex, bool completed);
   void setShoppingCompleted(int index, bool completed);
   void addTask(TaskItem task);
   void addShoppingEntry(ShoppingEntry entry);
@@ -14,9 +15,33 @@ abstract interface class OrganizationRepository {
 
 class InMemoryOrganizationRepository implements OrganizationRepository {
   final List<TaskItem> _tasks = [
-    TaskItem('Finish the presentation', NexoSpace.personal),
-    TaskItem('Buy medication', NexoSpace.household),
-    TaskItem('Confirm the appointment', NexoSpace.personal),
+    TaskItem(
+      'Finish the presentation',
+      NexoSpace.personal,
+      priority: TaskPriority.high,
+      dueDate: DateTime.now().add(const Duration(hours: 3)),
+      subtasks: [
+        SubtaskItem('Review the final slides', completed: true),
+        SubtaskItem('Practice the introduction'),
+        SubtaskItem('Send the document'),
+      ],
+    ),
+    TaskItem(
+      'Buy medication',
+      NexoSpace.household,
+      priority: TaskPriority.high,
+      dueDate: DateTime.now().add(const Duration(days: 1)),
+      subtasks: [
+        SubtaskItem('Check the prescription'),
+        SubtaskItem('Confirm pharmacy hours'),
+      ],
+    ),
+    TaskItem(
+      'Confirm the appointment',
+      NexoSpace.personal,
+      priority: TaskPriority.medium,
+      dueDate: DateTime.now().add(const Duration(days: 3)),
+    ),
   ];
 
   final List<ShoppingEntry> _shopping = [
@@ -49,7 +74,25 @@ class InMemoryOrganizationRepository implements OrganizationRepository {
 
   @override
   void setTaskCompleted(int index, bool completed) {
-    _tasks[index].completed = completed;
+    final task = _tasks[index];
+    task.completed = completed;
+    if (completed) {
+      for (final subtask in task.subtasks) {
+        subtask.completed = true;
+      }
+    }
+  }
+
+  @override
+  void setSubtaskCompleted(
+    int taskIndex,
+    int subtaskIndex,
+    bool completed,
+  ) {
+    final task = _tasks[taskIndex];
+    task.subtasks[subtaskIndex].completed = completed;
+    task.completed =
+        task.subtasks.isNotEmpty && task.subtasks.every((item) => item.completed);
   }
 
   @override
