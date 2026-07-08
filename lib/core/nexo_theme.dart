@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'design_tokens.dart';
+
 abstract final class NexoTheme {
   static ThemeData get light => _build(
         Brightness.light,
@@ -37,7 +39,7 @@ abstract final class NexoTheme {
         elevation: 0,
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(NexoRadii.card),
         ),
       ),
       navigationBarTheme: NavigationBarThemeData(
@@ -53,14 +55,14 @@ abstract final class NexoTheme {
         backgroundColor: scheme.primary,
         foregroundColor: scheme.onPrimary,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(NexoRadii.floatingButton),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: surface,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(NexoRadii.control),
           borderSide: BorderSide.none,
         ),
       ),
