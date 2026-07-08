@@ -1,0 +1,87 @@
+name: Bootstrap Flutter platforms
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bootstrap-flutter-platforms
+  cancel-in-progress: false
+
+jobs:
+  mobile-and-apple:
+    name: Generate Android and Apple hosts
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Generate platform hosts
+        run: flutter create --no-pub --project-name nexo --org com.jvniorq --platforms=android,ios,macos .
+      - name: Package generated hosts
+        run: tar -czf mobile-apple-platforms.tar.gz android ios macos .metadata
+      - name: Upload generated hosts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-apple-platforms
+          path: mobile-apple-platforms.tar.gz
+          if-no-files-found: error
+
+  windows:
+    name: Generate Windows host
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Generate platform host
+        run: flutter create --no-pub --project-name nexo --org com.jvniorq --platforms=windows .
+      - name: Package generated host
+        run: tar -czf windows-platform.tar.gz windows
+      - name: Upload generated host
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-platform
+          path: windows-platform.tar.gz
+          if-no-files-found: error
+
+  commit:
+    name: Commit generated platform hosts
+    needs:
+      - mobile-and-apple
+      - windows
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Download generated hosts
+        uses: actions/download-artifact@v4
+        with:
+          path: generated
+      - name: Extract generated hosts
+        run: |
+          tar -xzf generated/mobile-apple-platforms/mobile-apple-platforms.tar.gz
+          tar -xzf generated/windows-platform/windows-platform.tar.gz
+      - name: Commit platform hosts and remove bootstrap workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add android ios macos windows .metadata
+          git rm .github/workflows/bootstrap-platforms.yml
+          git commit -m "Add Flutter mobile and desktop platform hosts"
+          git push origin main
